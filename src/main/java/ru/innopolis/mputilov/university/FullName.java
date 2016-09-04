@@ -30,4 +30,9 @@ public class FullName {
     public String getMiddleName() {
         return middleName;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " " + middleName;
+    }
 }

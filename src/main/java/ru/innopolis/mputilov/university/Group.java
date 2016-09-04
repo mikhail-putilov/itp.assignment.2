@@ -38,4 +38,8 @@ public class Group {
     public void setYearOfCreation(Year yearOfCreation) {
         this.yearOfCreation = yearOfCreation;
     }
+
+    public boolean isStudentInGroup(Student student) {
+        return students.contains(student);
+    }
 }
