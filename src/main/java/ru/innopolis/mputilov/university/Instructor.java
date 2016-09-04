@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by mputilov on 25.08.16.
  */
-public class Instructor {
+public class Instructor implements Person {
     private FullName fullName;
     private String instructorId;
     private List<Course> givenCourses;
@@ -16,6 +16,7 @@ public class Instructor {
         this.givenCourses = givenCourses;
     }
 
+    @Override
     public FullName getFullName() {
         return fullName;
     }
