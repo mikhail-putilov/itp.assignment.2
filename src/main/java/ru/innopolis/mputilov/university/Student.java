@@ -3,7 +3,7 @@ package ru.innopolis.mputilov.university;
 /**
  * Created by mputilov on 25.08.16.
  */
-public class Student {
+public class Student implements Person {
     private FullName fullName;
     private String studentId;
     private String major;
@@ -22,6 +22,7 @@ public class Student {
         this.belongsToThisGroup = belongsToThisGroup;
     }
 
+    @Override
     public FullName getFullName() {
         return fullName;
     }
