@@ -9,13 +9,15 @@ import java.util.List;
 import static java.util.UUID.randomUUID;
 
 /**
+ * Repository of students
+ * <p>
  * Singleton. Because we can't use spring's singletons.
  * Caution: do not use this in production systems.
  * <p>
  * Created by mputilov on 20/10/16.
  */
 public class HardcodedStudentRepository {
-    private static HardcodedStudentRepository INSTANCE = new HardcodedStudentRepository();
+    private final static HardcodedStudentRepository INSTANCE = new HardcodedStudentRepository();
     private List<Student> students = new ArrayList<>();
 
     private HardcodedStudentRepository() {

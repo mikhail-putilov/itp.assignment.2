@@ -9,13 +9,15 @@ import java.util.List;
 import static java.util.UUID.randomUUID;
 
 /**
+ * Repository of TAs
+ * <p>
  * Singleton. Because we can't use spring's singletons.
  * Caution: do not use this in production systems.
  * <p>
  * Created by mputilov on 20/10/16.
  */
 public class HardcodedTeacherAssistantRepository {
-    private static HardcodedTeacherAssistantRepository INSTANCE = new HardcodedTeacherAssistantRepository();
+    private final static HardcodedTeacherAssistantRepository INSTANCE = new HardcodedTeacherAssistantRepository();
     private List<TeacherAssistant> tas = new ArrayList<>();
 
     private HardcodedTeacherAssistantRepository() {
