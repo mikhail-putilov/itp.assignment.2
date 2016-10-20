@@ -1,5 +1,7 @@
 package ru.innopolis.mputilov.domain.schedule_agnostic.humans;
 
+import java.util.Objects;
+
 /**
  * Created by mputilov on 25.08.16.
  */
@@ -11,6 +13,21 @@ public final class FullName {
     public FullName(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FullName fullName = (FullName) o;
+        return Objects.equals(firstName, fullName.firstName) &&
+                Objects.equals(lastName, fullName.lastName) &&
+                Objects.equals(middleName, fullName.middleName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, middleName);
     }
 
     public FullName(String firstName, String lastName, String middleName) {

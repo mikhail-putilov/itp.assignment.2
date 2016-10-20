@@ -10,6 +10,9 @@ import ru.innopolis.mputilov.domain.schedule_agnostic.humans.TeacherAssistant;
 import ru.innopolis.mputilov.domain.schedule_aware.CourseHumansAware;
 import ru.innopolis.mputilov.domain.schedule_aware.Schedule;
 import ru.innopolis.mputilov.domain.schedule_aware.ScheduleEntry;
+import ru.innopolis.mputilov.repository.HardcodedInstructorRepository;
+import ru.innopolis.mputilov.repository.HardcodedStudentRepository;
+import ru.innopolis.mputilov.repository.HardcodedTeacherAssistantRepository;
 
 import java.time.LocalDateTime;
 import java.time.Year;
@@ -23,14 +26,19 @@ import static java.util.UUID.randomUUID;
  * Created by mputilov on 31.08.16.
  */
 public class Main {
+    private static HardcodedStudentRepository studentRepository = new HardcodedStudentRepository();
+    private static HardcodedTeacherAssistantRepository taRepository = new HardcodedTeacherAssistantRepository();
+    private static HardcodedInstructorRepository instructorRepository = new HardcodedInstructorRepository();
+
     public static void main(String[] args) {
         // humans
-        Student studentMikhailPutilov = new Student(randomUuid(), new FullName("Mikhail", "Putilov"), "Computer science");
-        Student studentMartinGarrix = new Student(randomUuid(), new FullName("Martin", "Garrix"), "Computer science");
-        Student studentStanislavMikhel = new Student(randomUuid(), new FullName("Stanislav", "Mikhel"), "Computer science");
-        TeacherAssistant taMaratMingazov = new TeacherAssistant(randomUuid(), new FullName("Marat", "Mingazov"));
-        TeacherAssistant taJorahMormont = new TeacherAssistant(randomUuid(), new FullName("Jorah", "Mormont"));
-        Instructor instructorEugeneZuev = new Instructor(randomUuid(), new FullName("Eugene", "Zuev"));
+        Student studentMikhailPutilov = studentRepository.findByFirstAndLastName("Mikhail", "Putilov");
+        Student studentMartinGarrix = studentRepository.findByFirstAndLastName("Martin", "Garrix");
+        Student studentStanislavMikhel = studentRepository.findByFirstAndLastName("Stanislav", "Mikhel");
+
+        TeacherAssistant taMaratMingazov = taRepository.findByFirstAndLastName("Marat", "Mingazov");
+        TeacherAssistant taJorahMormont = taRepository.findByFirstAndLastName("Jorah", "Mormont");
+        Instructor instructorEugeneZuev = instructorRepository.findByFirstAndLastName("Eugene", "Zuev");
 
         //group ms1-3
         AgnosticGroup ms1_3 = new AgnosticGroup(randomUuid(), "MS1-3", Year.now(), asList(studentMikhailPutilov, studentStanislavMikhel));
