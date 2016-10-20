@@ -13,6 +13,7 @@ import ru.innopolis.mputilov.domain.schedule_aware.ScheduleEntry;
 
 import java.time.LocalDateTime;
 import java.time.Year;
+import java.util.Collections;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
@@ -25,6 +26,7 @@ public class Main {
     public static void main(String[] args) {
         // humans
         Student studentMikhailPutilov = new Student(randomUuid(), new FullName("Mikhail", "Putilov"), "Computer science");
+        Student studentMartinGarrix = new Student(randomUuid(), new FullName("Martin", "Garrix"), "Computer science");
         Student studentStanislavMikhel = new Student(randomUuid(), new FullName("Stanislav", "Mikhel"), "Computer science");
         TeacherAssistant taMaratMingazov = new TeacherAssistant(randomUuid(), new FullName("Marat", "Mingazov"));
         TeacherAssistant taJorahMormont = new TeacherAssistant(randomUuid(), new FullName("Jorah", "Mormont"));
@@ -32,20 +34,34 @@ public class Main {
 
         //group ms1-3
         AgnosticGroup ms1_3 = new AgnosticGroup(randomUuid(), "MS1-3", Year.now(), asList(studentMikhailPutilov, studentStanislavMikhel));
+        AgnosticGroup ms1_1 = new AgnosticGroup(randomUuid(), "MS1-1", Year.now(), singletonList(studentMartinGarrix));
         //course itp
         CourseAgnostic itpCourse = new CourseAgnostic(randomUuid(), "ItP", "Introduction to Programming. Lorem ipsum dolorem...");
-        CourseHumansAware itpHumansAware = new CourseHumansAware(randomUuid(), itpCourse, ms1_3,
+        CourseHumansAware itpAwareMs1_3 = new CourseHumansAware(randomUuid(), itpCourse, ms1_3,
                 singletonList(instructorEugeneZuev),
                 singletonList(taMaratMingazov));
+        CourseHumansAware itpAwareMs1_1 = new CourseHumansAware(randomUuid(), itpCourse, ms1_1,
+                singletonList(instructorEugeneZuev),
+                singletonList(taJorahMormont));
+
 
 
         Classroom classroom108 = new Classroom("108", "1th floor");
+        Classroom classroom109 = new Classroom("109", "1th floor");
+        Classroom classroom110 = new Classroom("110", "1th floor");
+
 
         Schedule schedule = new Schedule();
-        ScheduleEntry ordinaryLesson = ScheduleEntry.createInstructorLesson(randomUuid(), itpHumansAware, classroom108, LocalDateTime.of(2016, 10, 20, 10, 30));
-        schedule.addOneTimeEntry(ordinaryLesson);
-        ScheduleEntry labLesson = ScheduleEntry.createTaLesson(randomUuid(), itpHumansAware, classroom108, LocalDateTime.of(2016, 10, 27, 10, 30));
-        schedule.addOneTimeEntry(labLesson);
+        // default lecture
+        ScheduleEntry ordinaryLessonMs1_1 = ScheduleEntry.createInstructorLesson(randomUuid(), itpAwareMs1_1, classroom108, LocalDateTime.of(2016, 10, 20, 10, 30));
+        ScheduleEntry ordinaryLessonMs1_3 = ScheduleEntry.createInstructorLesson(randomUuid(), itpAwareMs1_3, classroom108, LocalDateTime.of(2016, 10, 20, 10, 30));
+        schedule.addOneTimeEntry(ordinaryLessonMs1_1);
+        schedule.addOneTimeEntry(ordinaryLessonMs1_3);
+        //lab lessons
+        ScheduleEntry labLessonMs1_1 = ScheduleEntry.createTaLesson(randomUuid(), itpAwareMs1_1, classroom110, LocalDateTime.of(2016, 10, 27, 10, 30));
+        ScheduleEntry labLessonMs1_3 = ScheduleEntry.createTaLesson(randomUuid(), itpAwareMs1_3, classroom109, LocalDateTime.of(2016, 10, 27, 12, 30));
+        schedule.addOneTimeEntry(labLessonMs1_1);
+        schedule.addOneTimeEntry(labLessonMs1_3);
     }
 
     private static String randomUuid() {
