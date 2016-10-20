@@ -8,7 +8,8 @@ import java.util.TreeSet;
  */
 public class Schedule {
 
-    Set<ScheduleEntry> oneTimeEntries = new TreeSet<>();
+    private Set<ScheduleEntry> oneTimeEntries = new TreeSet<>();
+//    private Set<ScheduleEntry> repetitiveEntries = new ...
 
     public void addOneTimeEntry(ScheduleEntry scheduleEntry) {
         oneTimeEntries.add(scheduleEntry);

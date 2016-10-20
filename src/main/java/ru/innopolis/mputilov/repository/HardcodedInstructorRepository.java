@@ -8,13 +8,21 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Singleton. Because we can't use spring's singletons.
+ * Caution: do not use this in production systems.
+ * <p>
  * Created by mputilov on 20/10/16.
  */
 public class HardcodedInstructorRepository {
+    private static HardcodedInstructorRepository INSTANCE = new HardcodedInstructorRepository();
     private List<Instructor> instructors = new ArrayList<>();
 
-    public HardcodedInstructorRepository() {
+    private HardcodedInstructorRepository() {
         instructors.add(new Instructor(UUID.randomUUID().toString(), new FullName("Eugene", "Zuev")));
+    }
+
+    public static HardcodedInstructorRepository getInstance() {
+        return INSTANCE;
     }
 
     public Instructor findByFirstAndLastName(String firstName, String lastName) {

@@ -3,7 +3,6 @@ package ru.innopolis.mputilov;
 import ru.innopolis.mputilov.domain.schedule_agnostic.AgnosticGroup;
 import ru.innopolis.mputilov.domain.schedule_agnostic.Classroom;
 import ru.innopolis.mputilov.domain.schedule_agnostic.CourseAgnostic;
-import ru.innopolis.mputilov.domain.schedule_agnostic.humans.FullName;
 import ru.innopolis.mputilov.domain.schedule_agnostic.humans.Instructor;
 import ru.innopolis.mputilov.domain.schedule_agnostic.humans.Student;
 import ru.innopolis.mputilov.domain.schedule_agnostic.humans.TeacherAssistant;
@@ -16,7 +15,6 @@ import ru.innopolis.mputilov.repository.HardcodedTeacherAssistantRepository;
 
 import java.time.LocalDateTime;
 import java.time.Year;
-import java.util.Collections;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
@@ -26,9 +24,9 @@ import static java.util.UUID.randomUUID;
  * Created by mputilov on 31.08.16.
  */
 public class Main {
-    private static HardcodedStudentRepository studentRepository = new HardcodedStudentRepository();
-    private static HardcodedTeacherAssistantRepository taRepository = new HardcodedTeacherAssistantRepository();
-    private static HardcodedInstructorRepository instructorRepository = new HardcodedInstructorRepository();
+    private static HardcodedStudentRepository studentRepository = HardcodedStudentRepository.getInstance();
+    private static HardcodedTeacherAssistantRepository taRepository = HardcodedTeacherAssistantRepository.getInstance();
+    private static HardcodedInstructorRepository instructorRepository = HardcodedInstructorRepository.getInstance();
 
     public static void main(String[] args) {
         // humans
@@ -51,7 +49,6 @@ public class Main {
         CourseHumansAware itpAwareMs1_1 = new CourseHumansAware(randomUuid(), itpCourse, ms1_1,
                 singletonList(instructorEugeneZuev),
                 singletonList(taJorahMormont));
-
 
 
         Classroom classroom108 = new Classroom("108", "1th floor");
