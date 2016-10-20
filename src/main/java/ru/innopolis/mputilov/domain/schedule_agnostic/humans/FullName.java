@@ -1,9 +1,9 @@
-package ru.innopolis.mputilov.university;
+package ru.innopolis.mputilov.domain.schedule_agnostic.humans;
 
 /**
  * Created by mputilov on 25.08.16.
  */
-public class FullName {
+public final class FullName {
     private String firstName;
     private String lastName;
     private String middleName;

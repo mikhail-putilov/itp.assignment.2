@@ -1,4 +1,4 @@
-package ru.innopolis.mputilov.university;
+package ru.innopolis.mputilov.domain.schedule_agnostic;
 
 /**
  * Created by mputilov on 25.08.16.

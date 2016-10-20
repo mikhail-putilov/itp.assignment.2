@@ -1,4 +1,7 @@
-package ru.innopolis.mputilov.university;
+package ru.innopolis.mputilov.domain.schedule_agnostic;
+
+import ru.innopolis.mputilov.domain.DomainObject;
+import ru.innopolis.mputilov.domain.schedule_agnostic.humans.Student;
 
 import java.time.Year;
 import java.util.List;
@@ -6,25 +9,20 @@ import java.util.List;
 /**
  * Created by mputilov on 25.08.16.
  */
-public class Group {
+public class AgnosticGroup extends DomainObject {
     private String groupCode;
-    private String groupId;
     private Year yearOfCreation;
     private List<Student> students;
 
-    public Group(String groupId, String groupCode, Year yearOfCreation, List<Student> students) {
+    public AgnosticGroup(String groupId, String groupCode, Year yearOfFormation, List<Student> students) {
+        super(groupId);
         this.groupCode = groupCode;
-        this.groupId = groupId;
-        this.yearOfCreation = yearOfCreation;
+        this.yearOfCreation = yearOfFormation;
         this.students = students;
     }
 
     public String getGroupCode() {
         return groupCode;
-    }
-
-    public String getGroupId() {
-        return groupId;
     }
 
     public List<Student> getStudents() {
