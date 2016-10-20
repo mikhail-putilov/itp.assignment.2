@@ -20,19 +20,18 @@ import static java.util.UUID.randomUUID;
  */
 public class HardcodedAgnosticGroupRepository {
     private final static HardcodedAgnosticGroupRepository INSTANCE = new HardcodedAgnosticGroupRepository();
-    private static HardcodedStudentRepository studentRepository = HardcodedStudentRepository.getInstance();
 
     private List<AgnosticGroup> groups = new ArrayList<>();
 
     private HardcodedAgnosticGroupRepository() {
         groups.add(new AgnosticGroup(randomUUID().toString(),
                 "MS1-3", Year.now(),
-                asList(studentRepository.findByFirstAndLastName("Mikhail", "Putilov"),
-                        studentRepository.findByFirstAndLastName("Stanislav", "Mikhel"))));
+                asList(HardcodedStudentRepository.getInstance().findByFirstAndLastName("Mikhail", "Putilov"),
+                        HardcodedStudentRepository.getInstance().findByFirstAndLastName("Stanislav", "Mikhel"))));
 
         groups.add(new AgnosticGroup(randomUUID().toString(),
                 "MS1-1", Year.now(),
-                singletonList(studentRepository.findByFirstAndLastName("Martin", "Garrix"))));
+                singletonList(HardcodedStudentRepository.getInstance().findByFirstAndLastName("Martin", "Garrix"))));
 
     }
 

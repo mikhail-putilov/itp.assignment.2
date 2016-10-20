@@ -22,6 +22,12 @@ public class Classroom {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "Classroom{" + classroomCode +
+                '}';
+    }
+
     public String getFloor() {
         return floor;
     }

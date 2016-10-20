@@ -10,6 +10,13 @@ public class CourseAgnostic extends DomainObject {
     private String courseCode;
     private String description;
 
+    @Override
+    public String toString() {
+        return "CourseAgnostic{" +
+                "courseCode='" + courseCode + '\'' +
+                '}';
+    }
+
     public CourseAgnostic(String id, String courseCode, String description) {
         super(id);
         this.courseCode = courseCode;

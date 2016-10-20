@@ -19,6 +19,15 @@ public class CourseHumansAware extends DomainObject {
     private List<Instructor> primaryInstructors;
     private List<TeacherAssistant> teacherAssistants;
 
+    @Override
+    public String toString() {
+        return "CourseHumansAware{" +
+                "courseAgnostic=" + courseAgnostic +
+                ", primaryInstructors=" + primaryInstructors +
+                ", teacherAssistants=" + teacherAssistants +
+                '}';
+    }
+
     public CourseHumansAware(String courseId,
                              CourseAgnostic courseAgnostic,
                              AgnosticGroup enrolledAgnosticGroup,

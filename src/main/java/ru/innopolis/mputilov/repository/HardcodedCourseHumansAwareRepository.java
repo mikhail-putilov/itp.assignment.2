@@ -23,19 +23,15 @@ import static java.util.UUID.randomUUID;
  */
 public class HardcodedCourseHumansAwareRepository {
     private final static HardcodedCourseHumansAwareRepository INSTANCE = new HardcodedCourseHumansAwareRepository();
-    private final static HardcodedAgnosticCourseRepository AGNOSTIC_COURSE_REPOSITORY = HardcodedAgnosticCourseRepository.getInstance();
-    private final static HardcodedAgnosticGroupRepository AGNOSTIC_GROUP_REPOSITORY = HardcodedAgnosticGroupRepository.getInstance();
-    private final static HardcodedTeacherAssistantRepository TA_REPOSITORY = HardcodedTeacherAssistantRepository.getInstance();
-    private final static HardcodedInstructorRepository INSTRUCTOR_REPOSITORY = HardcodedInstructorRepository.getInstance();
     private List<CourseHumansAware> courseHumansAwareList = new ArrayList<>();
 
     private HardcodedCourseHumansAwareRepository() {
-        CourseAgnostic itpCourse = AGNOSTIC_COURSE_REPOSITORY.findCourseByCode("ItP");
-        Instructor instructorEugeneZuev = INSTRUCTOR_REPOSITORY.findByFirstAndLastName("Eugene", "Zuev");
-        AgnosticGroup ms1_3 = AGNOSTIC_GROUP_REPOSITORY.findCurrentYearAgnosticGroupByGroupCode("MS1-3");
-        AgnosticGroup ms1_1 = AGNOSTIC_GROUP_REPOSITORY.findCurrentYearAgnosticGroupByGroupCode("MS1-1");
-        TeacherAssistant taMaratMingazov = TA_REPOSITORY.findByFirstAndLastName("Marat", "Mingazov");
-        TeacherAssistant taJorahMormont = TA_REPOSITORY.findByFirstAndLastName("Jorah", "Mormont");
+        CourseAgnostic itpCourse = HardcodedAgnosticCourseRepository.getInstance().findCourseByCode("ItP");
+        Instructor instructorEugeneZuev = HardcodedInstructorRepository.getInstance().findByFirstAndLastName("Eugene", "Zuev");
+        AgnosticGroup ms1_3 = HardcodedAgnosticGroupRepository.getInstance().findCurrentYearAgnosticGroupByGroupCode("MS1-3");
+        AgnosticGroup ms1_1 = HardcodedAgnosticGroupRepository.getInstance().findCurrentYearAgnosticGroupByGroupCode("MS1-1");
+        TeacherAssistant taMaratMingazov = HardcodedTeacherAssistantRepository.getInstance().findByFirstAndLastName("Marat", "Mingazov");
+        TeacherAssistant taJorahMormont = HardcodedTeacherAssistantRepository.getInstance().findByFirstAndLastName("Jorah", "Mormont");
 
         courseHumansAwareList.add(new CourseHumansAware(randomUUID().toString(), itpCourse, ms1_3,
                 singletonList(instructorEugeneZuev),

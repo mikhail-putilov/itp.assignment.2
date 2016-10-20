@@ -8,6 +8,13 @@ import ru.innopolis.mputilov.domain.DomainObject;
 public class Instructor extends DomainObject implements Teacher {
     private FullName fullName;
 
+    @Override
+    public String toString() {
+        return "Instructor{" +
+                "fullName=" + fullName +
+                '}';
+    }
+
     public Instructor(String instructorId, FullName fullName) {
         super(instructorId);
         this.fullName = fullName;

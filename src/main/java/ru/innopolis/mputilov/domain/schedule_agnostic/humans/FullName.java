@@ -15,6 +15,12 @@ public final class FullName {
         this.lastName = lastName;
     }
 
+    public FullName(String firstName, String lastName, String middleName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,12 +34,6 @@ public final class FullName {
     @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName, middleName);
-    }
-
-    public FullName(String firstName, String lastName, String middleName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
     }
 
     public String getFirstName() {
@@ -50,6 +50,8 @@ public final class FullName {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " " + middleName;
+        return (firstName != null ? firstName : "")
+                + " " + (lastName != null ? lastName : "")
+                + " " + (middleName != null ? middleName : "");
     }
 }
