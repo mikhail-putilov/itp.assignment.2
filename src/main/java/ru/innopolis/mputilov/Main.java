@@ -9,6 +9,7 @@ import ru.innopolis.mputilov.repository.HardcodedCourseHumansAwareRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static java.util.UUID.randomUUID;
 
@@ -18,6 +19,7 @@ import static java.util.UUID.randomUUID;
 public class Main {
     private final static HardcodedCourseHumansAwareRepository COURSE_HUMANS_AWARE_REPOSITORY = HardcodedCourseHumansAwareRepository.getInstance();
     private static final HardcodedClassroomRepository CLASSROOM_REPOSITORY = HardcodedClassroomRepository.getInstance();
+    public static final LocalDate LOCAL_DATE = LocalDate.of(2016, 10, 27);
 
 
     public static void main(String[] args) {
@@ -27,10 +29,11 @@ public class Main {
     }
 
     private static void queriesDemo(Schedule schedule) {
-        LocalDate at = LocalDate.of(2016, 10, 27);
-        System.out.println("Schedule for MS1-3 at " + at + ":");
-        schedule.printScheduleFor("MS1-3", at);
+        System.out.println("Schedule for MS1-3 at " + LOCAL_DATE + ":");
+        schedule.printScheduleFor("MS1-3", LOCAL_DATE);
         System.out.println("====");
+        System.out.println("Schedule for everyone at " + LOCAL_DATE + ":");
+        schedule.printScheduleAt(LOCAL_DATE);
     }
 
     /**
@@ -52,13 +55,15 @@ public class Main {
 
         Schedule schedule = new Schedule();
         // default lecture
-        ScheduleEntry ordinaryLessonMs1_1 = ScheduleEntry.createInstructorLesson(randomUUID().toString(), itpAwareMs1_1, classroom108, LocalDateTime.of(2016, 10, 20, 10, 30));
-        ScheduleEntry ordinaryLessonMs1_3 = ScheduleEntry.createInstructorLesson(randomUUID().toString(), itpAwareMs1_3, classroom108, LocalDateTime.of(2016, 10, 20, 10, 30));
+        LocalDateTime at10_30 = LocalDateTime.of(LOCAL_DATE, LocalTime.of(10, 30));
+        LocalDateTime at12_00 = LocalDateTime.of(LOCAL_DATE, LocalTime.of(12, 0));
+        ScheduleEntry ordinaryLessonMs1_1 = ScheduleEntry.createInstructorLesson(randomUUID().toString(), itpAwareMs1_1, classroom108, at10_30);
+        ScheduleEntry ordinaryLessonMs1_3 = ScheduleEntry.createInstructorLesson(randomUUID().toString(), itpAwareMs1_3, classroom108, at10_30);
         schedule.addOneTimeEntry(ordinaryLessonMs1_1);
         schedule.addOneTimeEntry(ordinaryLessonMs1_3);
         //lab lessons
-        ScheduleEntry labLessonMs1_1 = ScheduleEntry.createTaLesson(randomUUID().toString(), itpAwareMs1_1, classroom110, LocalDateTime.of(2016, 10, 27, 10, 30));
-        ScheduleEntry labLessonMs1_3 = ScheduleEntry.createTaLesson(randomUUID().toString(), itpAwareMs1_3, classroom109, LocalDateTime.of(2016, 10, 27, 12, 30));
+        ScheduleEntry labLessonMs1_1 = ScheduleEntry.createTaLesson(randomUUID().toString(), itpAwareMs1_1, classroom110, at10_30);
+        ScheduleEntry labLessonMs1_3 = ScheduleEntry.createTaLesson(randomUUID().toString(), itpAwareMs1_3, classroom109, at12_00);
         schedule.addOneTimeEntry(labLessonMs1_1);
         schedule.addOneTimeEntry(labLessonMs1_3);
         return schedule;

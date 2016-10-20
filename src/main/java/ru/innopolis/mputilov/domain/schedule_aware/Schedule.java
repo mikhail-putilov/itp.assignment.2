@@ -28,7 +28,14 @@ public class Schedule {
     public void printScheduleFor(String groupCode, LocalDate when) {
         SortedSet<Pair> pairs = oneTimeEntries.subSet(
                 of(LocalDateTime.of(when, LocalTime.MIN), groupCode, null),
-                of(LocalDateTime.of(when, LocalTime.MAX), groupCode, null));
+                of(LocalDateTime.of(when.plusDays(1), LocalTime.MIN), groupCode, null));
+        pairs.stream().filter(pair -> pair.groupCode.equals(groupCode)).forEach(pair -> System.out.println(pair.entry));
+    }
+
+    public void printScheduleAt(LocalDate when) {
+        SortedSet<Pair> pairs = oneTimeEntries.subSet(
+                of(LocalDateTime.of(when, LocalTime.MIN), null, null),
+                of(LocalDateTime.of(when.plusDays(1), LocalTime.MIN), null, null));
         pairs.forEach(pair -> System.out.println(pair.entry));
     }
 
@@ -78,16 +85,22 @@ public class Schedule {
          */
         @Override
         public int compareTo(Pair o) {
-            int cmpWhen = when.compareTo(o.when);
-            if (cmpWhen != 0) return cmpWhen;
+            int cmpWhen = Objects.compare(when, o.when, LocalDateTime::compareTo);
+            if (cmpWhen != 0) {
+                return cmpWhen;
+            }
 
-            int cmpGroupCode = groupCode.compareTo(o.groupCode);
-            if (cmpGroupCode != 0) return cmpGroupCode;
+            int cmpGroupCode = Objects.compare(groupCode, o.groupCode, String::compareTo);
+            if (cmpGroupCode != 0) {
+                return cmpGroupCode;
+            }
 
-            int cmpCourseCode = courseCode.compareTo(o.courseCode);
-            if (cmpCourseCode != 0) return cmpCourseCode;
+            int cmpCourseCode = Objects.compare(courseCode, o.courseCode, String::compareTo);
+            if (cmpCourseCode != 0) {
+                return cmpCourseCode;
+            }
 
-            return 0;
+            return entry.getId().compareTo(o.entry.getId());
         }
 
     }

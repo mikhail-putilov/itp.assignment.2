@@ -31,6 +31,7 @@ public class HardcodedCourseHumansAwareRepository {
         AgnosticGroup ms1_3 = HardcodedAgnosticGroupRepository.getInstance().findCurrentYearAgnosticGroupByGroupCode("MS1-3");
         AgnosticGroup ms1_1 = HardcodedAgnosticGroupRepository.getInstance().findCurrentYearAgnosticGroupByGroupCode("MS1-1");
         TeacherAssistant taMaratMingazov = HardcodedTeacherAssistantRepository.getInstance().findByFirstAndLastName("Marat", "Mingazov");
+        //Игорь Престолов передает Джораху Мормонту пламенный привет
         TeacherAssistant taJorahMormont = HardcodedTeacherAssistantRepository.getInstance().findByFirstAndLastName("Jorah", "Mormont");
 
         courseHumansAwareList.add(new CourseHumansAware(randomUUID().toString(), itpCourse, ms1_3,
