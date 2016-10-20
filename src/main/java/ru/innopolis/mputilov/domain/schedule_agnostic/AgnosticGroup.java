@@ -40,4 +40,11 @@ public class AgnosticGroup extends DomainObject {
     public boolean isStudentInGroup(Student student) {
         return students.contains(student);
     }
+
+    public boolean isStudentInGroup(String firstname, String lastname) {
+        return students.stream()
+                .anyMatch(student ->
+                        student.getFullName().getFirstName().equals(firstname)
+                                && student.getFullName().getLastName().equals(lastname));
+    }
 }

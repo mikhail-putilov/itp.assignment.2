@@ -6,6 +6,7 @@ import ru.innopolis.mputilov.domain.schedule_aware.Schedule;
 import ru.innopolis.mputilov.domain.schedule_aware.ScheduleEntry;
 import ru.innopolis.mputilov.repository.HardcodedClassroomRepository;
 import ru.innopolis.mputilov.repository.HardcodedCourseHumansAwareRepository;
+import ru.innopolis.mputilov.service.StudentService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ import static java.util.UUID.randomUUID;
 public class Main {
     private final static HardcodedCourseHumansAwareRepository COURSE_HUMANS_AWARE_REPOSITORY = HardcodedCourseHumansAwareRepository.getInstance();
     private static final HardcodedClassroomRepository CLASSROOM_REPOSITORY = HardcodedClassroomRepository.getInstance();
-    public static final LocalDate LOCAL_DATE = LocalDate.of(2016, 10, 27);
+    public static final LocalDate LOCAL_DATE_27_10_2016 = LocalDate.of(2016, 10, 27);
 
 
     public static void main(String[] args) {
@@ -29,11 +30,14 @@ public class Main {
     }
 
     private static void queriesDemo(Schedule schedule) {
-        System.out.println("Schedule for MS1-3 at " + LOCAL_DATE + ":");
-        schedule.printScheduleFor("MS1-3", LOCAL_DATE);
+        System.out.println("Schedule for MS1-3 at " + LOCAL_DATE_27_10_2016 + ":");
+        schedule.printScheduleFor("MS1-3", LOCAL_DATE_27_10_2016);
         System.out.println("====");
-        System.out.println("Schedule for everyone at " + LOCAL_DATE + ":");
-        schedule.printScheduleAt(LOCAL_DATE);
+        System.out.println("Schedule for everyone at " + LOCAL_DATE_27_10_2016 + ":");
+        schedule.printScheduleAt(LOCAL_DATE_27_10_2016);
+        System.out.println("====");
+        System.out.println("Student Mikhail Putilov have to visit following courses:");
+        StudentService.getInstance().printToBeVisitedCoursesFor("Mikhail", "Putilov");
     }
 
     /**
@@ -55,8 +59,8 @@ public class Main {
 
         Schedule schedule = new Schedule();
         // default lecture
-        LocalDateTime at10_30 = LocalDateTime.of(LOCAL_DATE, LocalTime.of(10, 30));
-        LocalDateTime at12_00 = LocalDateTime.of(LOCAL_DATE, LocalTime.of(12, 0));
+        LocalDateTime at10_30 = LocalDateTime.of(LOCAL_DATE_27_10_2016, LocalTime.of(10, 30));
+        LocalDateTime at12_00 = LocalDateTime.of(LOCAL_DATE_27_10_2016, LocalTime.of(12, 0));
         ScheduleEntry ordinaryLessonMs1_1 = ScheduleEntry.createInstructorLesson(randomUUID().toString(), itpAwareMs1_1, classroom108, at10_30);
         ScheduleEntry ordinaryLessonMs1_3 = ScheduleEntry.createInstructorLesson(randomUUID().toString(), itpAwareMs1_3, classroom108, at10_30);
         schedule.addOneTimeEntry(ordinaryLessonMs1_1);

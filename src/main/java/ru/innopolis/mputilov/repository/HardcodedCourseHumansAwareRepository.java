@@ -9,6 +9,7 @@ import ru.innopolis.mputilov.domain.schedule_aware.CourseHumansAware;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.singletonList;
 import static java.util.UUID.randomUUID;
@@ -52,5 +53,11 @@ public class HardcodedCourseHumansAwareRepository {
                         && Objects.equals(course.getEnrolledAgnosticGroup().getGroupCode(), groupCode))
                 .findAny()
                 .get();
+    }
+
+    public List<CourseHumansAware> findByGroupCode(String groupCode) {
+        return courseHumansAwareList.stream()
+                .filter(course -> Objects.equals(course.getEnrolledAgnosticGroup().getGroupCode(), groupCode))
+                .collect(Collectors.toList());
     }
 }

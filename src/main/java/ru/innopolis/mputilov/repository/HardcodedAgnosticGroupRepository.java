@@ -39,6 +39,12 @@ public class HardcodedAgnosticGroupRepository {
         return INSTANCE;
     }
 
+    public AgnosticGroup findCurrentYearAgnosticGroupWhichContainsFollowingStudent(String firstname, String lastname) {
+        return groups.stream().filter(agnosticGroup ->
+                agnosticGroup.isStudentInGroup(firstname, lastname))
+                .findFirst().get();
+    }
+
     public AgnosticGroup findCurrentYearAgnosticGroupByGroupCode(String groupCode) {
         return groups.stream().filter(agnosticGroup ->
                 agnosticGroup.getYearOfCreation().equals(Year.now()) &&

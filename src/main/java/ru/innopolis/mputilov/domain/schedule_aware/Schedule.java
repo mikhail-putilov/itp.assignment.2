@@ -28,7 +28,7 @@ public class Schedule {
     public void printScheduleFor(String groupCode, LocalDate when) {
         SortedSet<Pair> pairs = oneTimeEntries.subSet(
                 of(LocalDateTime.of(when, LocalTime.MIN), groupCode, null),
-                of(LocalDateTime.of(when.plusDays(1), LocalTime.MIN), groupCode, null));
+                of(LocalDateTime.of(when.plusDays(1), LocalTime.MIN), null, null));
         pairs.stream().filter(pair -> pair.groupCode.equals(groupCode)).forEach(pair -> System.out.println(pair.entry));
     }
 
