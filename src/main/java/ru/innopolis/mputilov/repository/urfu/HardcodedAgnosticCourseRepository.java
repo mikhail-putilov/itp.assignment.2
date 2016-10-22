@@ -17,7 +17,7 @@ public class HardcodedAgnosticCourseRepository extends BaseAgnosticCourseReposit
     private final static HardcodedAgnosticCourseRepository INSTANCE = new HardcodedAgnosticCourseRepository();
 
     private HardcodedAgnosticCourseRepository() {
-        courses.add(new CourseAgnostic(UUID.randomUUID().toString(), "ItP", "Introduction to Programming. Lorem ipsum dolorem..."));
+        courses.add(new CourseAgnostic(UUID.randomUUID().toString(), "Calculus", "Calculus 101. Lorem ipsum dolorem..."));
     }
 
     public static HardcodedAgnosticCourseRepository getInstance() {

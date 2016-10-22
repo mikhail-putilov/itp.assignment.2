@@ -1,10 +1,9 @@
 package ru.innopolis.mputilov.repository.innopolis;
 
 import ru.innopolis.mputilov.domain.schedule_agnostic.AgnosticGroup;
+import ru.innopolis.mputilov.repository.BaseAgnosticGroupRepository;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.List;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
@@ -18,10 +17,8 @@ import static java.util.UUID.randomUUID;
  * <p>
  * Created by mputilov on 20/10/16.
  */
-public class HardcodedAgnosticGroupRepository {
+public class HardcodedAgnosticGroupRepository extends BaseAgnosticGroupRepository {
     private final static HardcodedAgnosticGroupRepository INSTANCE = new HardcodedAgnosticGroupRepository();
-
-    private List<AgnosticGroup> groups = new ArrayList<>();
 
     private HardcodedAgnosticGroupRepository() {
         groups.add(new AgnosticGroup(randomUUID().toString(),
@@ -39,15 +36,4 @@ public class HardcodedAgnosticGroupRepository {
         return INSTANCE;
     }
 
-    public AgnosticGroup findCurrentYearAgnosticGroupWhichContainsFollowingStudent(String firstname, String lastname) {
-        return groups.stream().filter(agnosticGroup ->
-                agnosticGroup.isStudentInGroup(firstname, lastname))
-                .findFirst().get();
-    }
-
-    public AgnosticGroup findCurrentYearAgnosticGroupByGroupCode(String groupCode) {
-        return groups.stream().filter(agnosticGroup ->
-                agnosticGroup.getYearOfCreation().equals(Year.now()) &&
-                        agnosticGroup.getGroupCode().equals(groupCode)).findAny().get();
-    }
 }

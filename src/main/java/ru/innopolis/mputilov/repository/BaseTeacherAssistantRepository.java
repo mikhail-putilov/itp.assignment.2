@@ -9,9 +9,10 @@ import java.util.List;
 /**
  * Created by mputilov on 22/10/16.
  */
-public abstract class BaseTeacherAssistantRepository {
+public abstract class BaseTeacherAssistantRepository implements TeacherAssistantRepository {
     protected List<TeacherAssistant> tas = new ArrayList<>();
 
+    @Override
     public TeacherAssistant findByFirstAndLastName(String firstName, String lastName) {
         FullName fullName = new FullName(firstName, lastName);
         return tas.stream().filter(ta -> ta.getFullName().equals(fullName)).findAny().get();

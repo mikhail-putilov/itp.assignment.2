@@ -2,9 +2,8 @@ package ru.innopolis.mputilov.repository.urfu;
 
 import ru.innopolis.mputilov.domain.schedule_agnostic.humans.FullName;
 import ru.innopolis.mputilov.domain.schedule_agnostic.humans.Instructor;
+import ru.innopolis.mputilov.repository.BaseInstructorRepository;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,11 +14,11 @@ import java.util.UUID;
  * <p>
  * Created by mputilov on 20/10/16.
  */
-public class HardcodedInstructorRepository extends ru.innopolis.mputilov.repository.BaseInstructorRepository {
+public class HardcodedInstructorRepository extends BaseInstructorRepository {
     private final static HardcodedInstructorRepository INSTANCE = new HardcodedInstructorRepository();
 
     private HardcodedInstructorRepository() {
-        instructors.add(new Instructor(UUID.randomUUID().toString(), new FullName("Eugene", "Zuev")));
+        instructors.add(new Instructor(UUID.randomUUID().toString(), new FullName("Maxim", "Alshanskyi")));
     }
 
     public static HardcodedInstructorRepository getInstance() {

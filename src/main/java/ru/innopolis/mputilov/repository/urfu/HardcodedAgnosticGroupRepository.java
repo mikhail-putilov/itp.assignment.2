@@ -24,13 +24,13 @@ public class HardcodedAgnosticGroupRepository extends BaseAgnosticGroupRepositor
 
     private HardcodedAgnosticGroupRepository() {
         groups.add(new AgnosticGroup(randomUUID().toString(),
-                "MS1-3", Year.now(),
+                "P-100901", Year.now(),
                 asList(HardcodedStudentRepository.getInstance().findByFirstAndLastName("Mikhail", "Putilov"),
-                        HardcodedStudentRepository.getInstance().findByFirstAndLastName("Stanislav", "Mikhel"))));
+                        HardcodedStudentRepository.getInstance().findByFirstAndLastName("Konstantin", "Putin"))));
 
         groups.add(new AgnosticGroup(randomUUID().toString(),
-                "MS1-1", Year.now(),
-                singletonList(HardcodedStudentRepository.getInstance().findByFirstAndLastName("Martin", "Garrix"))));
+                "P-100902", Year.now(),
+                singletonList(HardcodedStudentRepository.getInstance().findByFirstAndLastName("Sasha", "Ozonov"))));
 
     }
 

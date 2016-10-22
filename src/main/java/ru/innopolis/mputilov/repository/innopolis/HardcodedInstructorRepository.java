@@ -3,8 +3,6 @@ package ru.innopolis.mputilov.repository.innopolis;
 import ru.innopolis.mputilov.domain.schedule_agnostic.humans.FullName;
 import ru.innopolis.mputilov.domain.schedule_agnostic.humans.Instructor;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,9 +13,8 @@ import java.util.UUID;
  * <p>
  * Created by mputilov on 20/10/16.
  */
-public class HardcodedInstructorRepository {
+public class HardcodedInstructorRepository extends ru.innopolis.mputilov.repository.BaseInstructorRepository {
     private final static HardcodedInstructorRepository INSTANCE = new HardcodedInstructorRepository();
-    private List<Instructor> instructors = new ArrayList<>();
 
     private HardcodedInstructorRepository() {
         instructors.add(new Instructor(UUID.randomUUID().toString(), new FullName("Eugene", "Zuev")));
@@ -27,8 +24,4 @@ public class HardcodedInstructorRepository {
         return INSTANCE;
     }
 
-    public Instructor findByFirstAndLastName(String firstName, String lastName) {
-        FullName fullName = new FullName(firstName, lastName);
-        return instructors.stream().filter(instructor -> instructor.getFullName().equals(fullName)).findAny().get();
-    }
 }

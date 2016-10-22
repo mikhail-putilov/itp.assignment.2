@@ -9,15 +9,17 @@ import java.util.List;
 /**
  * Created by mputilov on 22/10/16.
  */
-public abstract class BaseAgnosticGroupRepository {
+public abstract class BaseAgnosticGroupRepository implements AgnosticGroupRepository {
     protected List<AgnosticGroup> groups = new ArrayList<>();
 
-    public AgnosticGroup findCurrentYearAgnosticGroupWhichContainsFollowingStudent(String firstname, String lastname) {
+    @Override
+    public AgnosticGroup findCurrentYearAgnosticGroupByStudent(String firstname, String lastname) {
         return groups.stream().filter(agnosticGroup ->
                 agnosticGroup.isStudentInGroup(firstname, lastname))
                 .findFirst().get();
     }
 
+    @Override
     public AgnosticGroup findCurrentYearAgnosticGroupByGroupCode(String groupCode) {
         return groups.stream().filter(agnosticGroup ->
                 agnosticGroup.getYearOfCreation().equals(Year.now()) &&

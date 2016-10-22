@@ -8,9 +8,10 @@ import java.util.List;
 /**
  * Created by mputilov on 22/10/16.
  */
-public abstract class BaseClassroomRepository {
+public abstract class BaseClassroomRepository implements ClassroomRepository {
     protected List<Classroom> classrooms = new ArrayList<>();
 
+    @Override
     public Classroom findByClassroomCode(String classroomCode) {
         return classrooms.stream().filter(classroom -> classroom.getClassroomCode().equals(classroomCode)).findAny().get();
     }

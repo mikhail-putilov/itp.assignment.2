@@ -10,9 +10,10 @@ import java.util.stream.Collectors;
 /**
  * Created by mputilov on 22/10/16.
  */
-public abstract class BaseCourseHumansAwareRepository {
+public abstract class BaseCourseHumansAwareRepository implements CourseHumansAwareRepository {
     protected List<CourseHumansAware> courseHumansAwareList = new ArrayList<>();
 
+    @Override
     public CourseHumansAware findByCourseCodeAndGroupCode(String courseCode, String groupCode) {
         return courseHumansAwareList.stream()
                 .filter(course -> Objects.equals(course.getCourseAgnostic().getCourseCode(), courseCode)
@@ -21,6 +22,7 @@ public abstract class BaseCourseHumansAwareRepository {
                 .get();
     }
 
+    @Override
     public List<CourseHumansAware> findByGroupCode(String groupCode) {
         return courseHumansAwareList.stream()
                 .filter(course -> Objects.equals(course.getEnrolledAgnosticGroup().getGroupCode(), groupCode))

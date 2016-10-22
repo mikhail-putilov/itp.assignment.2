@@ -6,11 +6,6 @@ import ru.innopolis.mputilov.domain.schedule_agnostic.humans.Instructor;
 import ru.innopolis.mputilov.domain.schedule_agnostic.humans.TeacherAssistant;
 import ru.innopolis.mputilov.domain.schedule_aware.CourseHumansAware;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 import static java.util.Collections.singletonList;
 import static java.util.UUID.randomUUID;
 
@@ -22,9 +17,8 @@ import static java.util.UUID.randomUUID;
  * <p>
  * Created by mputilov on 20/10/16.
  */
-public class HardcodedCourseHumansAwareRepository {
+public class HardcodedCourseHumansAwareRepository extends ru.innopolis.mputilov.repository.BaseCourseHumansAwareRepository {
     private final static HardcodedCourseHumansAwareRepository INSTANCE = new HardcodedCourseHumansAwareRepository();
-    private List<CourseHumansAware> courseHumansAwareList = new ArrayList<>();
 
     private HardcodedCourseHumansAwareRepository() {
         CourseAgnostic itpCourse = HardcodedAgnosticCourseRepository.getInstance().findCourseByCode("ItP");
@@ -47,17 +41,4 @@ public class HardcodedCourseHumansAwareRepository {
         return INSTANCE;
     }
 
-    public CourseHumansAware findByCourseCodeAndGroupCode(String courseCode, String groupCode) {
-        return courseHumansAwareList.stream()
-                .filter(course -> Objects.equals(course.getCourseAgnostic().getCourseCode(), courseCode)
-                        && Objects.equals(course.getEnrolledAgnosticGroup().getGroupCode(), groupCode))
-                .findAny()
-                .get();
-    }
-
-    public List<CourseHumansAware> findByGroupCode(String groupCode) {
-        return courseHumansAwareList.stream()
-                .filter(course -> Objects.equals(course.getEnrolledAgnosticGroup().getGroupCode(), groupCode))
-                .collect(Collectors.toList());
-    }
 }

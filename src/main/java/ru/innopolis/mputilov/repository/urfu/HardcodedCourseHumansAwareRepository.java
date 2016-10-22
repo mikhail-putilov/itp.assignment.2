@@ -5,12 +5,9 @@ import ru.innopolis.mputilov.domain.schedule_agnostic.CourseAgnostic;
 import ru.innopolis.mputilov.domain.schedule_agnostic.humans.Instructor;
 import ru.innopolis.mputilov.domain.schedule_agnostic.humans.TeacherAssistant;
 import ru.innopolis.mputilov.domain.schedule_aware.CourseHumansAware;
+import ru.innopolis.mputilov.repository.BaseCourseHumansAwareRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
+import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static java.util.UUID.randomUUID;
 
@@ -22,24 +19,23 @@ import static java.util.UUID.randomUUID;
  * <p>
  * Created by mputilov on 20/10/16.
  */
-public class HardcodedCourseHumansAwareRepository extends ru.innopolis.mputilov.repository.BaseCourseHumansAwareRepository {
+public class HardcodedCourseHumansAwareRepository extends BaseCourseHumansAwareRepository {
     private final static HardcodedCourseHumansAwareRepository INSTANCE = new HardcodedCourseHumansAwareRepository();
 
     private HardcodedCourseHumansAwareRepository() {
-        CourseAgnostic itpCourse = HardcodedAgnosticCourseRepository.getInstance().findCourseByCode("ItP");
-        Instructor instructorEugeneZuev = HardcodedInstructorRepository.getInstance().findByFirstAndLastName("Eugene", "Zuev");
-        AgnosticGroup ms1_3 = HardcodedAgnosticGroupRepository.getInstance().findCurrentYearAgnosticGroupByGroupCode("MS1-3");
-        AgnosticGroup ms1_1 = HardcodedAgnosticGroupRepository.getInstance().findCurrentYearAgnosticGroupByGroupCode("MS1-1");
-        TeacherAssistant taMaratMingazov = HardcodedTeacherAssistantRepository.getInstance().findByFirstAndLastName("Marat", "Mingazov");
-        //Игорь Престолов передает Джораху Мормонту пламенный привет
-        TeacherAssistant taJorahMormont = HardcodedTeacherAssistantRepository.getInstance().findByFirstAndLastName("Jorah", "Mormont");
+        HardcodedAgnosticGroupRepository groupRepository = HardcodedAgnosticGroupRepository.getInstance();
 
-        courseHumansAwareList.add(new CourseHumansAware(randomUUID().toString(), itpCourse, ms1_3,
-                singletonList(instructorEugeneZuev),
-                singletonList(taMaratMingazov)));
-        courseHumansAwareList.add(new CourseHumansAware(randomUUID().toString(), itpCourse, ms1_1,
-                singletonList(instructorEugeneZuev),
-                singletonList(taJorahMormont)));
+        CourseAgnostic itpCourse = HardcodedAgnosticCourseRepository.getInstance().findCourseByCode("Calculus");
+        Instructor instructor = HardcodedInstructorRepository.getInstance().findByFirstAndLastName("Maxim", "Alshanskyi");
+        AgnosticGroup p100901 = groupRepository.findCurrentYearAgnosticGroupByGroupCode("p-100901");
+        AgnosticGroup p100902 = groupRepository.findCurrentYearAgnosticGroupByGroupCode("p-100902");
+
+        courseHumansAwareList.add(new CourseHumansAware(randomUUID().toString(), itpCourse, p100901,
+                singletonList(instructor),
+                emptyList()));
+        courseHumansAwareList.add(new CourseHumansAware(randomUUID().toString(), itpCourse, p100902,
+                singletonList(instructor),
+                emptyList()));
     }
 
     public static HardcodedCourseHumansAwareRepository getInstance() {

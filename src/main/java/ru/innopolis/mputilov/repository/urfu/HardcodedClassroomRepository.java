@@ -17,9 +17,9 @@ public class HardcodedClassroomRepository extends ru.innopolis.mputilov.reposito
     private final static HardcodedClassroomRepository INSTANCE = new HardcodedClassroomRepository();
 
     private HardcodedClassroomRepository() {
-        classrooms.add(new Classroom("108", "1th floor"));
-        classrooms.add(new Classroom("109", "1th floor"));
-        classrooms.add(new Classroom("110", "1th floor", "Big giant classroom"));
+        classrooms.add(new Classroom("101", "1th floor"));
+        classrooms.add(new Classroom("201", "2th floor"));
+        classrooms.add(new Classroom("301", "3th floor", "Small room"));
     }
 
     public static HardcodedClassroomRepository getInstance() {

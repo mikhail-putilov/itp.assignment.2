@@ -20,7 +20,7 @@ public class StudentService {
 
     public void printToBeVisitedCoursesFor(String firstname, String lastname) {
         AgnosticGroup groupWhichContainsStudent = HardcodedAgnosticGroupRepository.getInstance()
-                .findCurrentYearAgnosticGroupWhichContainsFollowingStudent(firstname, lastname);
+                .findCurrentYearAgnosticGroupByStudent(firstname, lastname);
 
         List<CourseHumansAware> allCourses = HardcodedCourseHumansAwareRepository.getInstance().findByGroupCode(groupWhichContainsStudent.getGroupCode());
         for (CourseHumansAware course : allCourses) {

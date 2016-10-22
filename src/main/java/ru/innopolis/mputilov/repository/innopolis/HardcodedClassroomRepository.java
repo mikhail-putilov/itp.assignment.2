@@ -2,9 +2,6 @@ package ru.innopolis.mputilov.repository.innopolis;
 
 import ru.innopolis.mputilov.domain.schedule_agnostic.Classroom;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Repository of course information without humans association
  * <p>
@@ -13,9 +10,8 @@ import java.util.List;
  * <p>
  * Created by mputilov on 20/10/16.
  */
-public class HardcodedClassroomRepository {
+public class HardcodedClassroomRepository extends ru.innopolis.mputilov.repository.BaseClassroomRepository {
     private final static HardcodedClassroomRepository INSTANCE = new HardcodedClassroomRepository();
-    private List<Classroom> classrooms = new ArrayList<>();
 
     private HardcodedClassroomRepository() {
         classrooms.add(new Classroom("108", "1th floor"));
@@ -27,7 +23,4 @@ public class HardcodedClassroomRepository {
         return INSTANCE;
     }
 
-    public Classroom findByClassroomCode(String classroomCode) {
-        return classrooms.stream().filter(classroom -> classroom.getClassroomCode().equals(classroomCode)).findAny().get();
-    }
 }
