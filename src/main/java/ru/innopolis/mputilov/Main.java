@@ -4,8 +4,8 @@ import ru.innopolis.mputilov.domain.schedule_agnostic.Classroom;
 import ru.innopolis.mputilov.domain.schedule_aware.CourseHumansAware;
 import ru.innopolis.mputilov.domain.schedule_aware.Schedule;
 import ru.innopolis.mputilov.domain.schedule_aware.ScheduleEntry;
-import ru.innopolis.mputilov.repository.HardcodedClassroomRepository;
-import ru.innopolis.mputilov.repository.HardcodedCourseHumansAwareRepository;
+import ru.innopolis.mputilov.repository.innopolis.HardcodedClassroomRepository;
+import ru.innopolis.mputilov.repository.innopolis.HardcodedCourseHumansAwareRepository;
 import ru.innopolis.mputilov.service.StudentService;
 
 import java.time.LocalDate;

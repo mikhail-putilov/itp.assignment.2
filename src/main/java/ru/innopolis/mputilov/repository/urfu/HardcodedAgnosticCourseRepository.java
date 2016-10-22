@@ -1,9 +1,8 @@
-package ru.innopolis.mputilov.repository;
+package ru.innopolis.mputilov.repository.urfu;
 
 import ru.innopolis.mputilov.domain.schedule_agnostic.CourseAgnostic;
+import ru.innopolis.mputilov.repository.BaseAgnosticCourseRepository;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -14,9 +13,8 @@ import java.util.UUID;
  * <p>
  * Created by mputilov on 20/10/16.
  */
-public class HardcodedAgnosticCourseRepository {
+public class HardcodedAgnosticCourseRepository extends BaseAgnosticCourseRepository {
     private final static HardcodedAgnosticCourseRepository INSTANCE = new HardcodedAgnosticCourseRepository();
-    private List<CourseAgnostic> courses = new ArrayList<>();
 
     private HardcodedAgnosticCourseRepository() {
         courses.add(new CourseAgnostic(UUID.randomUUID().toString(), "ItP", "Introduction to Programming. Lorem ipsum dolorem..."));
@@ -26,7 +24,4 @@ public class HardcodedAgnosticCourseRepository {
         return INSTANCE;
     }
 
-    public CourseAgnostic findCourseByCode(String courseCode) {
-        return courses.stream().filter(courseAgnostic -> courseAgnostic.getCourseCode().equals(courseCode)).findAny().get();
-    }
 }

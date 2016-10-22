@@ -1,4 +1,4 @@
-package ru.innopolis.mputilov.repository;
+package ru.innopolis.mputilov.repository.urfu;
 
 import ru.innopolis.mputilov.domain.schedule_agnostic.Classroom;
 
@@ -13,9 +13,8 @@ import java.util.List;
  * <p>
  * Created by mputilov on 20/10/16.
  */
-public class HardcodedClassroomRepository {
+public class HardcodedClassroomRepository extends ru.innopolis.mputilov.repository.BaseClassroomRepository {
     private final static HardcodedClassroomRepository INSTANCE = new HardcodedClassroomRepository();
-    private List<Classroom> classrooms = new ArrayList<>();
 
     private HardcodedClassroomRepository() {
         classrooms.add(new Classroom("108", "1th floor"));
@@ -27,7 +26,4 @@ public class HardcodedClassroomRepository {
         return INSTANCE;
     }
 
-    public Classroom findByClassroomCode(String classroomCode) {
-        return classrooms.stream().filter(classroom -> classroom.getClassroomCode().equals(classroomCode)).findAny().get();
-    }
 }

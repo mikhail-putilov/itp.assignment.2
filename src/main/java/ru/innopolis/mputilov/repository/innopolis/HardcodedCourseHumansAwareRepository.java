@@ -1,4 +1,4 @@
-package ru.innopolis.mputilov.repository;
+package ru.innopolis.mputilov.repository.innopolis;
 
 import ru.innopolis.mputilov.domain.schedule_agnostic.AgnosticGroup;
 import ru.innopolis.mputilov.domain.schedule_agnostic.CourseAgnostic;

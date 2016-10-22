@@ -1,10 +1,9 @@
 package ru.innopolis.mputilov.service;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import ru.innopolis.mputilov.domain.schedule_agnostic.AgnosticGroup;
 import ru.innopolis.mputilov.domain.schedule_aware.CourseHumansAware;
-import ru.innopolis.mputilov.repository.HardcodedAgnosticGroupRepository;
-import ru.innopolis.mputilov.repository.HardcodedCourseHumansAwareRepository;
+import ru.innopolis.mputilov.repository.innopolis.HardcodedAgnosticGroupRepository;
+import ru.innopolis.mputilov.repository.innopolis.HardcodedCourseHumansAwareRepository;
 
 import java.util.List;
 
